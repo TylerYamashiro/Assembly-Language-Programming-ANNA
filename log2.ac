@@ -1,0 +1,24 @@
+#Tyler Yamashiro
+#log2.ac
+#function: gets an input from the user and returns the base 2
+#exponent of the fucntion
+
+in r1 # get user input
+lli r5 0
+sub r6 r5 r1 #subtract user stored input from r5 and check if >0
+bez r6 &inval # check if r1 = 0
+bgz r6 &inval # end if >0 since a 0 - negative number = positive 
+lli r2 1 #store 1 in r2 to have a number to shift
+lli r3 0 #0 for loop comparison
+comp:sub r4 r2 r1
+#loop comparison comparing user input with number being shifted
+#out r4 
+bez r4 &end # used to break loop
+bgz r4 &end #use to break loop
+shf r2 r2 1 #shift bits left to multiply by 2
+#out r2
+addi r3 r3 1 #increment r3 for loop check
+#out r3
+bez r0 &comp #loop
+end: out r3
+inval: .halt

@@ -1,0 +1,14 @@
+#Tyler Yamashiro
+#mul.ac
+#Muliplies two numbers from the user
+in r1 
+in r2 #store user input in r1 and r2
+lli r3 0 #store 0 in r3 to compare in order to make loop(i)
+lli r5 0 #store 0 in r5 for multiplication
+comp: sub r4 r3 r2 #comparison between r3 and r2 for loop
+bez r4 &end #if r4 = 0 exit out of loop
+add r5 r5 r1 #add input from r1 to r5 store result in r5
+addi r3 r3 1 #increment r3 for loop comparison
+bez r0 &comp #loop back to comp
+end:out r5 #when comp breaks loop
+.halt

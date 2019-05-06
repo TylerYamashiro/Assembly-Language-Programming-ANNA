@@ -1,0 +1,49 @@
+#Tyler Yamashiro
+#max.ac
+#Store inputs by the user in an array in memory and find the
+#largest number
+lli r1 &list								
+lui r1 &list	# init &list					
+lli r7 0#count indexes in the array
+##############store user inputs into memory#################
+loop: in r2
+add r4 r1 r7 # r1 is the address of the array r7 the offest
+#lw r5 r4 0
+sw r2 r4 0 # store user input in array 
+addi r7 r7 1 #increment index
+lw r6 r4 0
+bez r2 &loop
+bgz r2 &loop
+######## avail registers r2,r3,r4,r5,r6#####################
+lli r6 0 #index count
+add r2 r1 r0 # add r6 to r1 to
+lw r3 r1 0 #load word located at r2 into r3
+sub r4 r6 r3#check if first input is negative
+bgz r4 &negFirst#if negative jump to neg first
+checkNext:lw r4 r2 1# load word after word in r2 in r4
+sub r5 r4 r3 #see if r4 > r3 which is bigger
+bgz r5 &replace # if bigger replace number in r3
+addi r2 r2 1 #incrememnt r2 value (address in array)
+addi r6 r6 1 #increment index count
+sub r4 r7 r6#check if it is the end of the array
+bez r4 &end #if end of array end
+bez r0 &checkNext #loop back to check next index
+replace: add r3 r4 r0 #replace r3 with r4 since it is bigger
+addi r2 r2 1 #increment the array index
+addi r6 r6 1 #increment the index count
+sub r4 r7 r6 #check if end of array
+bez r4 &end #end if end of array 
+bez r0 &checkNext#go and check next index
+end: out r3 #output
+.halt
+negFirst: out r6#if first input is negative print 0
+.halt 
+
+
+
+ 
+ 
+#########################DATA###############################
+list: .fill 	0	# list[0]			
+		
+
